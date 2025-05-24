@@ -1,24 +1,19 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Mail, Github, Linkedin, Twitter, ExternalLink, Code, Palette, Rocket, Brain, ArrowRight, Star, Users, Award, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import CursorFollower from '@/components/CursorFollower';
+import MagneticElement from '@/components/MagneticElements';
+import InteractiveBackground from '@/components/InteractiveBackground';
 
 const Index = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
+    // Hide default cursor
+    document.body.style.cursor = 'none';
+    
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -35,7 +30,10 @@ const Index = () => {
     const elements = document.querySelectorAll('[data-animate]');
     elements.forEach(el => observer.observe(el));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      document.body.style.cursor = 'auto';
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -43,7 +41,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-x-hidden relative">
+      {/* Cursor Follower */}
+      <CursorFollower />
+      
+      {/* Interactive Background */}
+      <InteractiveBackground />
+
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20"></div>
@@ -64,19 +68,22 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 p-4">
             <div className="flex justify-between items-center">
-              <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Portfolio
-              </div>
+              <MagneticElement>
+                <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Portfolio
+                </div>
+              </MagneticElement>
               <div className="hidden md:flex space-x-8">
                 {['About', 'Work', 'Skills', 'Contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105 relative group"
-                  >
-                    {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
-                  </button>
+                  <MagneticElement key={item}>
+                    <button
+                      onClick={() => scrollToSection(item.toLowerCase())}
+                      className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105 relative group"
+                    >
+                      {item}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                  </MagneticElement>
                 ))}
               </div>
             </div>
@@ -88,32 +95,38 @@ const Index = () => {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6 z-10">
         <div className="max-w-7xl mx-auto text-center">
           <div className="animate-fade-in">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent leading-tight">
-              Creative
-              <br />
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-                Developer
-              </span>
-            </h1>
+            <MagneticElement strength={0.2}>
+              <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent leading-tight">
+                Creative
+                <br />
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+                  Developer
+                </span>
+              </h1>
+            </MagneticElement>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Crafting exceptional digital experiences with cutting-edge technology 
               and innovative design solutions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button 
-                onClick={() => scrollToSection('work')}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
-              >
-                View My Work
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => scrollToSection('contact')}
-                className="border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
-                Get In Touch
-              </Button>
+              <MagneticElement strength={0.4}>
+                <Button 
+                  onClick={() => scrollToSection('work')}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+                >
+                  View My Work
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </MagneticElement>
+              <MagneticElement strength={0.4}>
+                <Button 
+                  variant="outline"
+                  onClick={() => scrollToSection('contact')}
+                  className="border-white/20 text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                >
+                  Get In Touch
+                </Button>
+              </MagneticElement>
             </div>
           </div>
           
@@ -125,18 +138,17 @@ const Index = () => {
               { icon: Award, number: '15+', label: 'Awards' },
               { icon: Star, number: '99%', label: 'Satisfaction' }
             ].map((stat, index) => (
-              <div 
-                key={index}
-                className="text-center group hover:scale-110 transition-all duration-300"
-              >
-                <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300">
-                  <stat.icon className="w-8 h-8 mx-auto mb-4 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />
-                  <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    {stat.number}
+              <MagneticElement key={index} strength={0.3}>
+                <div className="text-center group hover:scale-110 transition-all duration-300">
+                  <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300">
+                    <stat.icon className="w-8 h-8 mx-auto mb-4 text-purple-400 group-hover:text-pink-400 transition-colors duration-300" />
+                    <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
                   </div>
-                  <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
                 </div>
-              </div>
+              </MagneticElement>
             ))}
           </div>
         </div>
