@@ -4,6 +4,7 @@ import { ChevronDown, Mail, Github, Linkedin, Twitter, ExternalLink, Code, Palet
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import CursorFollower from '@/components/CursorFollower';
+import CursorFollowingCharacter from '@/components/CursorFollowingCharacter';
 import MagneticElement from '@/components/MagneticElements';
 import InteractiveBackground from '@/components/InteractiveBackground';
 
@@ -45,6 +46,9 @@ const Index = () => {
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
       {/* Cursor Follower */}
       <CursorFollower />
+      
+      {/* Cursor Following Character */}
+      <CursorFollowingCharacter />
       
       {/* Interactive Background */}
       <InteractiveBackground />
