@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Mail, Github, Linkedin, Twitter, ExternalLink, Code, Palette, Rocket, Brain, ArrowRight, Star, Users, Award, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -89,58 +90,45 @@ const Index = () => {
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6 z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text Content */}
-            <div className="text-center lg:text-left animate-fade-in">
-              <MagneticElement strength={0.2}>
-                <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-tight">
-                  Creative
-                  <br />
-                  <span className="bg-gradient-to-r from-gray-100 via-white to-gray-300 bg-clip-text text-transparent">
-                    Developer
-                  </span>
-                </h1>
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="animate-fade-in">
+            <MagneticElement strength={0.2}>
+              <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-tight">
+                Creative
+                <br />
+                <span className="bg-gradient-to-r from-gray-100 via-white to-gray-300 bg-clip-text text-transparent">
+                  Developer
+                </span>
+              </h1>
+            </MagneticElement>
+            <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Crafting exceptional digital experiences with cutting-edge technology 
+              and innovative design solutions
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <MagneticElement strength={0.4}>
+                <Button 
+                  onClick={() => scrollToSection('work')}
+                  className="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25"
+                >
+                  View My Work
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
               </MagneticElement>
-              <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
-                Crafting exceptional digital experiences with cutting-edge technology 
-                and innovative design solutions
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
-                <MagneticElement strength={0.4}>
-                  <Button 
-                    onClick={() => scrollToSection('work')}
-                    className="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25"
-                  >
-                    View My Work
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </MagneticElement>
-                <MagneticElement strength={0.4}>
-                  <Button 
-                    variant="outline"
-                    onClick={() => scrollToSection('contact')}
-                    className="border-gray-600 text-white hover:bg-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    Get In Touch
-                  </Button>
-                </MagneticElement>
-              </div>
-            </div>
-
-            {/* Right Column - Character */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
-                <CursorFollowingCharacter />
-                {/* Optional decorative elements around character */}
-                <div className="absolute -top-8 -left-8 w-4 h-4 bg-white/20 rounded-full animate-ping"></div>
-                <div className="absolute -bottom-12 -right-12 w-6 h-6 bg-gray-400/30 rounded-full animate-pulse"></div>
-              </div>
+              <MagneticElement strength={0.4}>
+                <Button 
+                  variant="outline"
+                  onClick={() => scrollToSection('contact')}
+                  className="border-gray-600 text-white hover:bg-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                >
+                  Get In Touch
+                </Button>
+              </MagneticElement>
             </div>
           </div>
           
-          {/* Stats - moved below */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
             {[
               { icon: Code, number: '100+', label: 'Projects' },
               { icon: Users, number: '50+', label: 'Clients' },
