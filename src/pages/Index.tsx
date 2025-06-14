@@ -7,6 +7,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import TypewriterLoop from "@/components/TypewriterLoop";
+import HeroLottieScroll from "@/components/HeroLottieScroll";
 
 const Index = () => (
   <Layout>
@@ -44,8 +45,8 @@ const Index = () => (
           </MagneticElement>
         </div>
       </div>
-      {/* 3D Hero Portal */}
-      <Hero3DPlaceholder />
+      {/* 2D Scroll-Responsive Hero Lottie Animation */}
+      <HeroLottieScroll height={440} />
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="w-10 h-10 text-cyan-300" />
       </div>
