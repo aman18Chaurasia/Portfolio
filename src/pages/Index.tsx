@@ -1,106 +1,98 @@
 
-import React, { useRef, useState, useEffect } from 'react';
-import { ChevronDown, ArrowRight, Code, Users, Award, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import Layout from '@/components/Layout';
-import MagneticElement from '@/components/MagneticElements';
+import React from "react";
+import Layout from "@/components/Layout";
+import Hero3DPlaceholder from "@/components/Hero3DPlaceholder";
+import AnimatedSectionContainer from "@/components/AnimatedSectionContainer";
+import MagneticElement from "@/components/MagneticElements";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
-const Index = () => {
-  const [isVisible, setIsVisible] = useState({});
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
-        }
-      });
-    }, observerOptions);
-
-    const elements = document.querySelectorAll('[data-animate]');
-    elements.forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <Layout>
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-fade-in">
-            <MagneticElement strength={0.2}>
-              <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-tight">
-                Creative
-                <br />
-                <span className="bg-gradient-to-r from-gray-100 via-white to-gray-300 bg-clip-text text-transparent">
-                  Developer
-                </span>
-              </h1>
-            </MagneticElement>
-            <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Crafting exceptional digital experiences with cutting-edge technology 
-              and innovative design solutions
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <MagneticElement strength={0.4}>
-                <Link to="/portfolio">
-                  <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25">
-                    View My Work
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              </MagneticElement>
-              <MagneticElement strength={0.4}>
-                <Link to="/contact">
-                  <Button 
-                    variant="outline"
-                    className="border-gray-600 text-white hover:bg-gray-900 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                  >
-                    Get In Touch
-                  </Button>
-                </Link>
-              </MagneticElement>
-            </div>
-          </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
-            {[
-              { icon: Code, number: '100+', label: 'Projects' },
-              { icon: Users, number: '50+', label: 'Clients' },
-              { icon: Award, number: '15+', label: 'Awards' },
-              { icon: Star, number: '99%', label: 'Satisfaction' }
-            ].map((stat, index) => (
-              <MagneticElement key={index} strength={0.3}>
-                <div className="text-center group hover:scale-110 transition-all duration-300">
-                  <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-300">
-                    <stat.icon className="w-8 h-8 mx-auto mb-4 text-white group-hover:text-gray-300 transition-colors duration-300" />
-                    <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-500 text-sm font-medium">{stat.label}</div>
-                  </div>
-                </div>
-              </MagneticElement>
-            ))}
-          </div>
+const Index = () => (
+  <Layout>
+    {/* Futuristic Hero Section */}
+    <AnimatedSectionContainer className="my-32 py-16 flex flex-col items-center">
+      <div className="flex flex-col items-center text-center space-y-8">
+        <MagneticElement strength={0.25}>
+          <h1 className="text-7xl md:text-9xl font-extrabold tracking-tight text-gradient animate-gradient typewriter">
+            NEO<span className="text-gradient-static">Shift</span>
+          </h1>
+        </MagneticElement>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-100 animate-fade-in">
+          <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent">Shape the Web’s Future</span>
+        </h2>
+        <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed animate-fade-in delay-200">
+          Explore a new dimension of interactive, animated portfolios—where code, creativity, and motion blur together.
+        </p>
+        <div className="flex justify-center gap-6 pt-4">
+          <MagneticElement strength={0.4}>
+            <Link to="/portfolio">
+              <Button className="bg-gradient-to-br from-purple-500 to-cyan-400 text-white px-10 py-4 rounded-full text-lg font-semibold hover-lift animate-glow flex items-center gap-2 shadow-lg">
+                Dive In <ArrowRight className="inline w-5 h-5" />
+              </Button>
+            </Link>
+          </MagneticElement>
+          <MagneticElement strength={0.4}>
+            <Link to="/contact">
+              <Button variant="outline" className="border-cyan-400 bg-black/40 hover:bg-black/90 text-white px-10 py-4 rounded-full text-lg font-semibold hover-lift">
+                Get In Touch
+              </Button>
+            </Link>
+          </MagneticElement>
         </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-8 h-8 text-gray-400" />
-        </div>
-      </section>
-    </Layout>
-  );
-};
+      </div>
+      {/* 3D Hero Portal */}
+      <Hero3DPlaceholder />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
+        <ChevronDown className="w-10 h-10 text-cyan-300" />
+      </div>
+    </AnimatedSectionContainer>
+    {/* Sections: About, Portfolio, Timeline, Contact */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto my-20">
+      {/* About Section */}
+      <AnimatedSectionContainer>
+        <h3 className="text-4xl font-bold text-gradient-static mb-4">About</h3>
+        <p className="text-lg text-gray-300 font-medium">
+          I architect immersive experiences with bleeding-edge web technologies. Every project is a living experiment—interactive, fluid, and unforgettable.
+        </p>
+        <Link to="/about">
+          <Button variant="ghost" className="mt-6 hover:bg-purple-900/20 text-gradient">Story &rarr;</Button>
+        </Link>
+      </AnimatedSectionContainer>
+      {/* Portfolio Section */}
+      <AnimatedSectionContainer>
+        <h3 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4">Featured Work</h3>
+        <p className="text-lg text-gray-300 font-medium">
+          World-class digital products, ultra-creative experiments, visionary client work. Tap to explore the code behind the magic.
+        </p>
+        <Link to="/portfolio">
+          <Button variant="ghost" className="mt-6 hover:bg-cyan-900/20 text-gradient">See Projects &rarr;</Button>
+        </Link>
+      </AnimatedSectionContainer>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto mb-32">
+      {/* Timeline Section */}
+      <AnimatedSectionContainer>
+        <h3 className="text-4xl font-bold text-gradient-static mb-4">Timeline</h3>
+        <p className="text-lg text-gray-300 font-medium">
+          Explore a journey of innovation—roles, awards, and adventures, visualized by year.
+        </p>
+        <Link to="/timeline">
+          <Button variant="ghost" className="mt-6 hover:bg-pink-900/20 text-gradient">See Timeline &rarr;</Button>
+        </Link>
+      </AnimatedSectionContainer>
+      {/* Contact Section */}
+      <AnimatedSectionContainer>
+        <h3 className="text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent mb-4">Contact</h3>
+        <p className="text-lg text-gray-300 font-medium">
+          Ready for an ambitious collab? Drop a message. The future isn’t coded alone.
+        </p>
+        <Link to="/contact">
+          <Button variant="ghost" className="mt-6 hover:bg-pink-900/20 text-gradient">Get In Touch &rarr;</Button>
+        </Link>
+      </AnimatedSectionContainer>
+    </div>
+  </Layout>
+);
 
 export default Index;
