@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Github, Linkedin, Twitter, ArrowRight } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 
@@ -24,10 +24,10 @@ const Contact = () => {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Contact Aman Directly</h2>
                 {[
-                  { icon: Mail, label: 'Email', value: 'aman.ch@yourdomain.com', href: 'mailto:aman.ch@yourdomain.com' },
-                  { icon: Github, label: 'GitHub', value: 'ch-aman', href: 'https://github.com/ch-aman' },
-                  { icon: Linkedin, label: 'LinkedIn', value: '/in/amanch', href: 'https://linkedin.com/in/amanch' },
-                  { icon: Twitter, label: 'Twitter', value: '@amanch_aitools', href: 'https://twitter.com/amanch_aitools' }
+                  { icon: Mail, label: 'Email', value: 'aman007chaurasia@gmail.com', href: 'mailto:aman007chaurasia@gmail.com' },
+                  { icon: Phone, label: 'Phone', value: '+91 7068813594', href: 'tel:+917068813594' },
+                  { icon: Github, label: 'GitHub', value: 'aman18Chaurasia', href: 'https://github.com/aman18Chaurasia' },
+                  { icon: Linkedin, label: 'LinkedIn', value: 'aman-chaurasia-91443b263', href: 'https://linkedin.com/in/aman-chaurasia-91443b263' }
                 ].map((contact, index) => (
                   <a 
                     key={index}
@@ -79,4 +79,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
