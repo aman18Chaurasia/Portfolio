@@ -3,8 +3,8 @@ import React, { useRef, useLayoutEffect, useEffect, useState } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SiReact, SiPython } from "react-icons/si";
-import { Cpu, Blocks, Sparkles, TerminalSquare } from "lucide-react";
+// Removed: import { SiReact, SiPython } from "react-icons/si";
+import { Cpu, Blocks, Sparkles, TerminalSquare, Atom, Braces, CircuitBoard } from "lucide-react";
 import TypewriterLoop from "./TypewriterLoop";
 
 // Register GSAP plugins
@@ -13,6 +13,16 @@ gsap.registerPlugin(ScrollTrigger);
 const LOTTIE_PATH = "/hero-animation-lottie.json";
 const FINAL_FRAME = 150;
 const FINAL_STAGE_START = 120;
+
+// Only use lucide-react icons for floatingIcons
+const floatingIcons = [
+  { Icon: Atom, color: "#61dafb", size: 36, style: { left: "12%", top: "55%" } }, // React-like
+  { Icon: CircuitBoard, color: "#3776AB", size: 31, style: { right: "13%", top: "65%" } }, // Python/AI
+  { Icon: Cpu, color: "#eab308", size: 31, style: { left: "24%", top: "30%" } },
+  { Icon: Sparkles, color: "#a21caf", size: 27, style: { right: "22%", top: "23%" } },
+  { Icon: Blocks, color: "#4172fa", size: 29, style: { right: "30%", top: "37%" } },
+  { Icon: Braces, color: "#c084fc", size: 30, style: { left: "31%", top: "17%" } },
+];
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -24,14 +34,6 @@ function useIsMobile() {
   }, []);
   return isMobile;
 }
-
-const floatingIcons = [
-  { Icon: SiReact, color: "#61dafb", size: 38, style: { left: "12%", top: "55%" } },
-  { Icon: SiPython, color: "#3776AB", size: 31, style: { right: "13%", top: "65%" } },
-  { Icon: Cpu, color: "#eab308", size: 31, style: { left: "24%", top: "30%" } },
-  { Icon: Sparkles, color: "#a21caf", size: 27, style: { right: "22%", top: "23%" } },
-  { Icon: Blocks, color: "#4172fa", size: 29, style: { right: "30%", top: "37%" } },
-];
 
 const fallbackImage = "/hero-fallback.png"; // Use a relevant image in /public
 
@@ -192,4 +194,3 @@ const MetaMorphHero: React.FC = () => {
 };
 
 export default MetaMorphHero;
-
