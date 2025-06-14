@@ -1,6 +1,6 @@
 
-import React from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 
 function RobotHead() {
   return (
@@ -32,6 +32,18 @@ function RobotHead() {
   );
 }
 
+function AnimatedRobot() {
+  const ref = useRef<any>(null);
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (ref.current) {
+      ref.current.rotation.y = t * 0.75;
+      ref.current.position.y = Math.sin(t * 1.5) * 0.12;
+    }
+  });
+  return <group ref={ref}><RobotHead /></group>;
+}
+
 const HeroRobot3D: React.FC = () => (
   <div className="relative w-full h-[320px] md:h-[480px] flex items-center justify-center my-8 rounded-3xl overflow-hidden glass-dark border border-purple-900/20 shadow-[0_0_90px_30px_rgba(139,92,246,0.12)]">
     <Canvas
@@ -43,7 +55,7 @@ const HeroRobot3D: React.FC = () => (
       <ambientLight intensity={0.5} />
       <directionalLight position={[4, 6, 5]} intensity={1.2} />
       {/* Floating/Spinning Model */}
-      <group rotation={[0, 0, 0]}>
+      <group>
         <AnimatedRobot />
       </group>
     </Canvas>
@@ -52,16 +64,5 @@ const HeroRobot3D: React.FC = () => (
     </span>
   </div>
 );
-
-// Simple animation using React state/raf - spins and floats the robot a bit
-function AnimatedRobot() {
-  const ref = React.useRef<THREE.Group>(null!);
-  React.useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    ref.current.rotation.y = t * 0.75;
-    ref.current.position.y = Math.sin(t * 1.5) * 0.12;
-  });
-  return <group ref={ref}><RobotHead /></group>;
-}
 
 export default HeroRobot3D;
