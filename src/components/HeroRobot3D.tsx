@@ -66,3 +66,4 @@ const HeroRobot3D: React.FC = () => (
 );
 
 export default HeroRobot3D;
+
