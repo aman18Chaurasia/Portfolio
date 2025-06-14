@@ -1,7 +1,8 @@
+
 import React from "react";
 import Layout from "@/components/Layout";
 import Hero3DPlaceholder from "@/components/Hero3DPlaceholder";
-import HeroRobot3D from "@/components/HeroRobot3D";
+// Removed: import HeroRobot3D from "@/components/HeroRobot3D";
 import AnimatedSectionContainer from "@/components/AnimatedSectionContainer";
 import MagneticElement from "@/components/MagneticElements";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -14,10 +15,10 @@ const Index = () => (
   <Layout>
     {/* Futuristic Hero Section */}
     <AnimatedSectionContainer className="my-32 py-16 flex flex-col items-center">
-      {/* 3D Robot Model */}
-      <div className="mb-4 w-full">
+      {/* 3D Robot Model Removed */}
+      {/* <div className="mb-4 w-full">
         <HeroRobot3D />
-      </div>
+      </div> */}
       <div className="flex flex-col items-center text-center space-y-8">
         <MagneticElement strength={0.25}>
           <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight text-gradient animate-gradient typewriter">
@@ -104,3 +105,4 @@ const Index = () => (
 );
 
 export default Index;
+
