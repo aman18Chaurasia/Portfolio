@@ -13,11 +13,11 @@ function RobotHead() {
       {/* Eyes */}
       <mesh position={[-0.4, 0.2, 0.91]}>
         <sphereGeometry args={[0.13, 24, 24]} />
-        <meshStandardMaterial color="#fff" />
+        <meshStandardMaterial color="#ffffff" />
       </mesh>
       <mesh position={[0.4, 0.2, 0.91]}>
         <sphereGeometry args={[0.13, 24, 24]} />
-        <meshStandardMaterial color="#fff" />
+        <meshStandardMaterial color="#ffffff" />
       </mesh>
       {/* Antenna */}
       <mesh position={[0, 1, 0]}>
@@ -66,4 +66,3 @@ const HeroRobot3D: React.FC = () => (
 );
 
 export default HeroRobot3D;
-
