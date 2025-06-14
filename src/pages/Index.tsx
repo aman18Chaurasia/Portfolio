@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/Layout";
 import Hero3DPlaceholder from "@/components/Hero3DPlaceholder";
@@ -7,6 +6,7 @@ import MagneticElement from "@/components/MagneticElements";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import TypewriterLoop from "@/components/TypewriterLoop";
 
 const Index = () => (
   <Layout>
@@ -19,7 +19,10 @@ const Index = () => (
           </h1>
         </MagneticElement>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-100 animate-fade-in">
-          <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent">Machine Learning, Full Stack &amp; Generative AI Expert</span>
+          <TypewriterLoop
+            text="Machine Learning, Full Stack & Generative AI Expert"
+            className="bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent"
+          />
         </h2>
         <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed animate-fade-in delay-200">
           Leveraging AI technologies, advanced ML tools, and modern development to create the future of software. Explore my world of code, intelligence, and innovation&mdash;from generative art to scalable solutions.
@@ -96,4 +99,3 @@ const Index = () => (
 );
 
 export default Index;
-
