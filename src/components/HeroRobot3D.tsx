@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 
@@ -7,25 +8,25 @@ function RobotHead() {
       {/* Head */}
       <mesh>
         <sphereGeometry args={[1, 32, 32]} />
-        <meshStandardMaterial color="#8b5cf6" roughness={0.5} metalness={0.6} />
+        <meshStandardMaterial color={"#8b5cf6"} roughness={0.5} metalness={0.6} />
       </mesh>
       {/* Eyes */}
       <mesh position={[-0.4, 0.2, 0.91]}>
         <sphereGeometry args={[0.13, 24, 24]} />
-        <meshStandardMaterial color="#ffffff" />
+        <meshStandardMaterial color={"#ffffff"} />
       </mesh>
       <mesh position={[0.4, 0.2, 0.91]}>
         <sphereGeometry args={[0.13, 24, 24]} />
-        <meshStandardMaterial color="#ffffff" />
+        <meshStandardMaterial color={"#ffffff"} />
       </mesh>
       {/* Antenna */}
       <mesh position={[0, 1, 0]}>
         <cylinderGeometry args={[0.05, 0.05, 0.5, 16]} />
-        <meshStandardMaterial color="#06b6d4" />
+        <meshStandardMaterial color={"#06b6d4"} />
       </mesh>
       <mesh position={[0, 1.3, 0]}>
         <sphereGeometry args={[0.09, 20, 20]} />
-        <meshStandardMaterial color="#ec4899" />
+        <meshStandardMaterial color={"#ec4899"} />
       </mesh>
     </group>
   );
@@ -65,3 +66,4 @@ const HeroRobot3D: React.FC = () => (
 );
 
 export default HeroRobot3D;
+
