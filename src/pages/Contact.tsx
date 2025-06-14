@@ -1,10 +1,45 @@
 
-import React from 'react';
-import { Mail, Github, Linkedin, Twitter, ArrowRight, Phone } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Github, Linkedin, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
+import { toast } from "@/components/ui/use-toast";
 
 const Contact = () => {
+  // State for form fields
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Handler for form submit
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Frontend validation
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      toast({
+        title: "Missing fields",
+        description: "Please fill in all fields before sending.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Simulate sending (no backend)
+    setLoading(true);
+    setTimeout(() => {
+      toast({
+        title: "Message sent",
+        description: "Thank you for reaching out! I will get back to you soon.",
+      });
+      setName('');
+      setEmail('');
+      setMessage('');
+      setLoading(false);
+    }, 1200);
+  };
+
   return (
     <Layout>
       <section className="py-24 px-6 mt-20">
@@ -12,14 +47,14 @@ const Contact = () => {
           <h1 className="text-5xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Let's Build Next-Gen AI Together
           </h1>
-          
+
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-gray-800 hover:border-gray-600 transition-all duration-500">
             <div className="text-center mb-12">
               <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
                 Want to supercharge your team, project, or product with AI-driven solutions? Get in touch with Aman Chaurasia—let’s create something revolutionary!
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Contact Aman Directly</h2>
@@ -29,7 +64,7 @@ const Contact = () => {
                   { icon: Github, label: 'GitHub', value: 'aman18Chaurasia', href: 'https://github.com/aman18Chaurasia' },
                   { icon: Linkedin, label: 'LinkedIn', value: 'aman-chaurasia-91443b263', href: 'https://linkedin.com/in/aman-chaurasia-91443b263' }
                 ].map((contact, index) => (
-                  <a 
+                  <a
                     key={index}
                     href={contact.href}
                     target="_blank" rel="noopener noreferrer"
@@ -45,27 +80,40 @@ const Contact = () => {
                   </a>
                 ))}
               </div>
-              
+
               <div>
                 <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
-                <form className="space-y-4">
-                  <input 
-                    type="text" 
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <input
+                    type="text"
                     placeholder="Your Name"
                     className="w-full p-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:border-gray-500 focus:outline-none transition-all duration-300"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    disabled={loading}
                   />
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     placeholder="Your Email"
                     className="w-full p-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:border-gray-500 focus:outline-none transition-all duration-300"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    disabled={loading}
                   />
-                  <textarea 
+                  <textarea
                     rows={4}
                     placeholder="Your Message"
                     className="w-full p-4 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:border-gray-500 focus:outline-none transition-all duration-300 resize-none"
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                    disabled={loading}
                   ></textarea>
-                  <Button className="w-full bg-white text-black hover:bg-gray-200 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25">
-                    Send Message
+                  <Button
+                    className="w-full bg-white text-black hover:bg-gray-200 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/25"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Send Message"}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </form>
